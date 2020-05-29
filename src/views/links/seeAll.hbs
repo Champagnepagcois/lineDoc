@@ -1,0 +1,26 @@
+
+<<div class="col-md-4 mx-auto">
+
+    <div class="card">
+        <div class="card-body">
+            <form action="/links/edit/{{link.id}}" method="POST">
+                <div class="form-group">
+                  <p class="card-text text-justify">{{link.title}}</p>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="url" class="form-control" placeholder="Enfermedad" value="{{link.url}}">
+                </div>
+                <div class="form-group">
+                    <textarea name="description" rows="2" class="form-control" placeholder="Descripcion">{{link.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success btn-block">
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

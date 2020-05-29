@@ -1,0 +1,164 @@
+<style>
+  * {
+	font-family: 'Raleway', sans-serif;
+}
+
+body {
+	background: #abaaac;
+	color: #786fa4;
+	overflow-x: hidden;
+	font-size: 14px;
+}
+
+.h-100vh {
+	height: 100vh !important;
+}
+
+.card {
+	margin: 0 auto;
+	margin-top: 0px;
+	max-width: 700px;
+	border: none;
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+@media only screen and (max-width: 767px) {
+	body{
+		padding-top: 20px;
+	}
+	.card {
+		width: 100%;
+	}
+}
+
+
+input[type="date"] {
+	display: a;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+	color: #FDFFFC !important;
+	border-color: #26A598 !important;
+	background-color: #26A598 !important;
+}
+
+.text-center {
+	color: #FDFFFC !important;
+	background-color: #ff445c !important;
+}
+
+.btn-primary {
+	color: #FDFFFC;
+	background-color: #ff416c;
+	border-color: #ff416c;
+}
+
+.btn-primary:hover {
+	background-color: #ff416c;
+	border-color: #ff416c;
+}
+
+.card-header.display-4 {
+	font-weight: bold;
+}
+
+button {
+    border-radius: 20px;
+    border: 1px solid #ff4b2b;
+    background: #ff445c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+</style>
+
+<div class="container h-100vh">
+	<div class="row row h-100 align-items-center justify-content-centerr">
+		<div class="col align-self-cente ">
+			<div class="card">
+				<div class="card-header text-center display-4">
+					Register
+				</div>
+				<div class="card-body">
+					<form action="/signup" method="POST">
+						<div class="form-row">
+							<div class="form-group col-md-4">
+								<label for="firstName">Name</label>
+								<input type="text" class="form-control" name="nameD" placeholder="First Name">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="middleName">Apellido paterno</label>
+								<input type="text" class="form-control" name="surname_p" placeholder="Middle Name">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="middleName">Apellido materno</label>
+								<input type="text" class="form-control" name="surname_m" placeholder="Middle Name">
+							</div>
+							
+						
+						<div class="form-row">
+							<div class="form-group col-md-15">
+								<label for="inputState">Numero de empleado</label>
+								<input type="number" class="form-control" name="num_emp" placeholder="Numero de empleado">
+							</div>
+							</div>
+							<div class="form-row">
+							<div class="form-group col-md-15">
+								<label for="inputState">Numero de cedula</label>
+								<input type="number" class="form-control" name="cedula" placeholder="Numero de Cedula">
+							</div>
+							<div class="form-row">
+							<div class="form-group col-md-15">
+								<label for="inputState">Day</label>
+								<input  type="date" class="form-control" name="cumple">
+							</div>
+              </div>
+			  <div class="form-group col-md-4">
+								<label for="phonenumber">Cargo</label>
+							<input type="text" class="form-control" name="cargo" placeholder="Cargo">
+							</div>
+						</div>
+            	<div class="form-group col-md-4">
+								<label for="phonenumber">Phone Number</label>
+							<input type="number" class="form-control" name="phone" placeholder="Phone Number">
+							</div>
+              
+						<div class="form-row align-items-center">
+							<div class="form-group col-md-15">
+								<label for="inputEmail4">Email</label>
+								<input type="email" class="form-control" name="username" placeholder="Email">
+							</div>
+							</div>
+              			</div>
+              <div class="form-row">
+							<div class="form-group col-md-15">
+								<label for="inputPassword4">Password</label>
+								<input type="password" class="form-control" name="password" placeholder="Password">
+							</div>
+						<div class="form-row">
+							<div class="form-group col-md-15">
+								<label for="inputPassword4">Confirm Password</label>
+								<input type="password" class="form-control" name="idPassword2" placeholder="Password">
+							</div>
+						</div>
+            
+						</div>
+						<div class="form-group">
+							<center><a href="/signin" class="form-text text-muted">I have an account!</a></center>
+						</div>
+						<center><button class="ghost center" id="signUp">Registrarme</button></center>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
