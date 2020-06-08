@@ -8,6 +8,16 @@ CREATE TABLE sangre (
     PRIMARY KEY (id_san)
 );
 
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+A');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+B');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+O ');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+AB');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-A');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-B');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-O');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-AB');
+
+
 CREATE TABLE Delegacion (
     id_del int NOT NULL PRIMARY KEY,
     name_del VARCHAR (20) NOT NULL
@@ -26,6 +36,7 @@ CREATE TABLE dir (
     num_int VARCHAR (10) ,
     manzana int,
     lote int,
+    
     CONSTRAINT fkdel FOREIGN KEY (id_del)
     REFERENCES Delegacion (id_del) 
     ON DELETE NO ACTION ON UPDATE CASCADE,
@@ -38,8 +49,8 @@ CREATE TABLE dir (
 CREATE TABLE hospital (
     id_hos int (10) AUTO_INCREMENT PRIMARY KEY,
     nameh VARCHAR (25) NOT NULL,
-    id_dir int NOT NULL,
-    id_numh int (10) NOT NULL
+    id_dir int ,
+    id_numh int (10) 
 );
 
 CREATE TABLE estatus (
@@ -56,18 +67,17 @@ CREATE TABLE type_usuario (
 CREATE TABLE paciente (
     id_pac int AUTO_INCREMENT PRIMARY KEY,
     CURP_pa VARCHAR (18) NOT NULL UNIQUE,
-    username VARCHAR (30) NOT NULL,
-    password VARCHAR (50) NOT NULL,
+    username VARCHAR (30) ,
+    password VARCHAR (50) ,
     namep VARCHAR (25) NOT NULL,
     surname_p VARCHAR (15) NOT NULL,
     surname_m VARCHAR (15) NOT NULL,
-    edad int (2) NOT NULL,
-    tel int (12) NOT NULL,
-    id_dir int NOT NULL,
-    cumple VARCHAR (10) NOT NULL,
     id_san int,
+    tel int (12) ,
+    id_dir int,
+    cumple VARCHAR (10) ,
     id_type int NOT NULL,
-    id_hos int ,
+    id_hos int,
     id_estatus int,
 
     CONSTRAINT fkesta FOREIGN KEY (id_estatus) 
@@ -170,14 +180,9 @@ CREATE TABLE doc (
 
 CREATE TABLE historial (
     id_his int AUTO_INCREMENT PRIMARY KEY,
-    cita VARCHAR (15) NOT NULL,
-    id_pac int NOT NULL,
     num_emp int NOT NULL,
+    created_at timestamp NOT NULL DEFAULT current_timestamp,
 
-        
-    CONSTRAINT fkpa FOREIGN KEY (id_pac) 
-    REFERENCES paciente (id_pac)
-    ON DELETE NO ACTION ON UPDATE CASCADE,
 
     CONSTRAINT fkdoc FOREIGN KEY (num_emp) 
     REFERENCES doc (num_emp)
@@ -187,12 +192,11 @@ CREATE TABLE historial (
 
 CREATE TABLE comentario (
     id_com int AUTO_INCREMENT PRIMARY KEY,
-    descripcion VARCHAR (20)
+    descripcion VARCHAR (100)
 );
 
 CREATE TABLE his_com (
     id_his int NOT NULL,
-    id_fam int NOT NULL,
     id_com int ,
 
     CONSTRAINT fkhis FOREIGN KEY (id_his) 
@@ -208,6 +212,7 @@ CREATE TABLE medicamento (
     id_infomedi int AUTO_INCREMENT PRIMARY KEY,
     durante VARCHAR (20),
     cantidad VARCHAR (20),
+    cada VARCHAR (10),
     nombre VARCHAR (20)
 );
 CREATE TABLE his_med (
@@ -244,29 +249,41 @@ CREATE TABLE his_enf (
 CREATE TABLE receta (
     id_receta int AUTO_INCREMENT PRIMARY KEY, 
     id_his int NOT NULL,
+    num_emp int NOT NULL,
+    id_pac int,
 
     CONSTRAINT fkrec FOREIGN KEY (id_his) 
     REFERENCES historial (id_his)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+
+    CONSTRAINT fkdocrec FOREIGN KEY (num_emp) 
+    REFERENCES doc (num_emp)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+
+    CONSTRAINT fkrecpac FOREIGN KEY (id_pac) 
+    REFERENCES paciente (id_pac)
     ON DELETE NO ACTION ON UPDATE CASCADE
     
 );
 
-CREATE TABLE pac_rec (
+CREATE TABLE pa_his (
     id_pac int NOT NULL,
-    id_receta int NOT NULL,
+    id_his int NOT NULL,
 
     CONSTRAINT fkpare FOREIGN KEY (id_pac) 
     REFERENCES paciente (id_pac)
     ON DELETE NO ACTION ON UPDATE CASCADE,
 
-    CONSTRAINT fkrece FOREIGN KEY (id_receta) 
-    REFERENCES receta (id_receta)
+    CONSTRAINT fkpacrec FOREIGN KEY (id_his) 
+    REFERENCES historial (id_his)
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 INSERT INTO type_usuario (tipo_user) VALUES ('doc');
 INSERT INTO type_usuario (tipo_user) VALUES ('pac');
 INSERT INTO type_usuario (tipo_user) VALUES ('uncheck');
+
+
 
 INSERT INTO doc (num_emp, cedula,nameD,surname_p,surname_m, cumple,cargo,phone,username, password) 
   VALUES (1, 56, 'DR SIMI', 'LARES','reee','14-02-02','bailar',5615088526,'marlonrodriguez2b@gmail.com','123');

@@ -1,26 +1,197 @@
+<style>
+    * {
+        font-family: 'Raleway', sans-serif;
+    }
 
-<<div class="col-md-4 mx-auto">
+    body {
+        background: #abaaac;
+        color: #786fa4;
+        overflow-x: hidden;
+        font-size: 14px;
+    }
 
-    <div class="card">
-        <div class="card-body">
-            <form action="/links/edit/{{link.id}}" method="POST">
-                <div class="form-group">
-                  <p class="card-text text-justify">{{link.title}}</p>
+    .h-100vh {
+        height: 75vh !important;
+    }
+
+    .card {
+        margin: 0 auto;
+        margin-top: 50px;
+        max-width: 900px;
+        border: none;
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+            0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+            0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+    }
+
+    @media only screen and (max-width: 767px) {
+        body {
+            padding-top: 20px;
+        }
+
+        .card {
+            width: 100%;
+        }
+    }
+
+    .text-center {
+        color: #FDFFFC !important;
+        background-color: #ff445c !important;
+    }
+
+    .btn-primary {
+        color: #FDFFFC;
+        background-color: #ff416c;
+        border-color: #ff416c;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff416c;
+        border-color: #ff416c;
+    }
+
+    .card-header.display-4 {
+        font-weight: bold;
+    }
+
+    .line {
+        border-bottom: 5px solid rgb(5, 182, 209);
+    }
+
+    
+    .button2 {
+    border-radius: 20px;
+    border:1px solid #000000;
+    background: #FF0000;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    }
+    .button3 {
+    border-radius: 20px;
+    border:1px solid #000000;
+    background: rgb(207, 169, 1);
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    }
+</style>
+
+
+
+<div class="container h-100vh">
+    <div class="row row h-100 align-items-center justify-content-centerr">
+        <div class="col align-self-cente ">
+            <div class="card">
+                <div class="card-header text-center display-4">
+                    Receta del paciente
                 </div>
-                <div class="form-group">
-                    <input type="text" name="url" class="form-control" placeholder="Enfermedad" value="{{link.url}}">
+                <div class="card-body">
+                    <div class="form-row line">
+                        <div class="form-group col-md-4">
+                            <label for="firstName">Name</label>
+                            <h3 class="form-control" name="namep">{{paciente.namep}}</h3>
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="middleName">Apellido paterno</label>
+                            <h3 class="form-control" name="namep">{{paciente.surname_p}}</h3>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="middleName">Apellido materno</label>
+                            <h3 class="form-control" name="namep">{{paciente.surname_m}}</h3>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="phonenumber">CURP</label>
+                            <h3 class="form-control" name="namep">{{paciente.CURP_pa}}</h3>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label for="phonenumber">Hospital</label>
+                            <input type="text" class="form-control" name="nameh" placeholder="Hospital">
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Tipo de sangre</label>
+                            <h3 class="form-control" name="namep">{{san.tipo}}</h3>
+                        </div>
+                    </div>
+                    {{#each ale}}
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <br>
+                            <label for="middleName">Alergia (as)</label>
+                            <h3 class="form-control" name="namep">{{descripcion}}</h3>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="line"></div>
+                    {{#each enf}}
+                    <div class="form-row">
+                        <div class="form-group col-md-9">
+                            <br>
+                            <label for="middleName">Enfermedad</label>
+                            <h3 class="form-control" name="namep">{{name_enfer}}</h3>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="line"></div>
+                    {{#each med}}
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            <br>
+                            <label for="middleName">Medicina</label>
+                            <h3 class="form-control" name="namep">{{nombre}}</h3>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <br>
+                            <label for="middleName">Cantidad</label>
+                            <h3 class="form-control" name="namep">{{cantidad}}</h3>
+                        </div>
+                        <div class="form-group col-md-1">
+                            <br>
+                            <label for="middleName">Horas</label>
+                            <h3 class="form-control" name="namep">{{cada}}</h3>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <br>
+                            <label for="middleName">Dias</label>
+                            <h3 class="form-control" name="namep">{{durante}}</h3>
+                        </div>
+                    </div>
+                    {{/each}}
+                    <div class="line"></div>
+
                 </div>
-                <div class="form-group">
-                    <textarea name="description" rows="2" class="form-control" placeholder="Descripcion">{{link.description}}</textarea>
+                <br>
+                <div class="form-group col-md-9">
+                    {{#each com}}
+                    <center>
+                        <h2 for="middleName">Comentario</h2>
+                    </center>
+                    <textarea disabled class="form-control"> {{descripcion}}</textarea>
+                    {{/each}}
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-success btn-block">
-                        Guardar
-                    </button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 
-
+    <div class="form-group col-md-4">
+        <form action="https://google.com">
+            <center><button class="button button3">Editar receta</button></center>
+        </form>
+    </div>
+    <div class="form-group col-md-4">
+        <form action="https://google.com">
+            <center><button class="button button2">Eliminar receta</button></center>
+        </form>
+    </div>

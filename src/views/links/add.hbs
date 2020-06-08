@@ -1,28 +1,305 @@
-<div class="container p-4">
-    <div class="row">
-        <div class="col-md-4 mx-auto">
+<style>
+  * {
+	font-family: 'Raleway', sans-serif;
+}
 
-            <div class="card">
-                <div class="card-body">
-                    <form action="/links/add" method="POST">
-                        <div class="form-group">
-                            <input type="text" name="title" class="form-control" placeholder="Nombre del paciente" autofocus>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="url" class="form-control" placeholder="Enfermedad">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="description" rows="2" class="form-control" placeholder="Descripcion"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-success btn-block">
-                                Guardar
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+body {
+	background: #abaaac;
+	color: #786fa4;
+	overflow-x: hidden;
+	font-size: 14px;
+}
 
-    </div>
+.h-100vh {
+	height: 75vh !important;
+}
+
+.card {
+	margin: 0 auto;
+	margin-top: 0px;
+	max-width: 900px;
+	border: none;
+	-webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+		0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+}
+
+@media only screen and (max-width: 767px) {
+	body{
+		padding-top: 20px;
+	}
+	.card {
+		width: 100%;
+	}
+}
+
+
+input[type="date"] {
+	display: a;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+	color: #FDFFFC !important;
+	border-color: #26A598 !important;
+	background-color: #26A598 !important;
+}
+
+.text-center {
+	color: #FDFFFC !important;
+	background-color: #ff445c !important;
+}
+
+.btn-primary {
+	color: #FDFFFC;
+	background-color: #ff416c;
+	border-color: #ff416c;
+}
+
+.btn-primary:hover {
+	background-color: #ff416c;
+	border-color: #ff416c;
+}
+
+.card-header.display-4 {
+	font-weight: bold;
+}
+
+button {
+    border-radius: 20px;
+    border: 1px solid #ff4b2b;
+    background: #ff445c;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+ .line{
+border-bottom: 5px solid rgb(5, 182, 209);
+}
+
+
+</style>
+
+
+
+<div class="container h-100vh">
+	<div class="row row h-100 align-items-center justify-content-centerr">
+		<div class="col align-self-cente ">
+			<div class="card">
+				<div class="card-header text-center display-4">
+					Recomendaciones del paciente
+				</div>
+				<div class="card-body">
+					<form action="/links/add" method="POST">
+						<div class="form-row">
+                            <div class="form-row line">
+							<div class="form-group col-md-4">
+								<label for="firstName">Name</label>
+								<input type="text" class="form-control" name="namep" placeholder="First Name">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="middleName">Apellido paterno</label>
+								<input type="text" class="form-control" name="surname_p" placeholder="Middle Name">
+							</div>
+							<div class="form-group col-md-4">
+								<label for="middleName">Apellido materno</label>
+								<input type="text" class="form-control" name="surname_m" placeholder="Middle Name">
+							</div>
+                            <div class="form-group col-md-4">
+						    <label for="phonenumber">CURP</label>
+							<input type="text" class="form-control" name="curp_pa" placeholder="CURP">
+                            </div>
+                            <div class="form-group col-md-4">
+						    <label for="phonenumber">Hospital</label>
+							<input type="text" class="form-control" name="nameh" placeholder="Hospital">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Tipo de sangre</label>
+                                <select name="sangre" class="form-control">
+                                    <option value="1">A+</option>
+                                    <option value="2">B+</option>
+                                    <option value="3">O+</option>
+                                    <option value="4">AB+</option>
+                                    <option value="5">A-</option>
+                                    <option value="6">B-</option>
+                                    <option value="7">O-</option>
+                                    <option value="8">AB-</option>
+                                </select>
+                            </div>
+                            </div>
+                            
+                            <div class="form-row line">
+                                <div class="form-group col-md-7">
+                                    <br>
+                                    <label for="middleName">Alergia (as)</label>
+                                    <input type="text" class="form-control" name="alergia1" placeholder="Alergia">
+                                </div>
+                                <div class="form-group col-md-7" id="myDIV">
+                                    <br>
+                                    <label for="middleName">Alergia</label>
+                                    <input type="text" class="form-control" name="alergia2" placeholder="Alergia">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <br>
+                                    <label for="middleName">Alergia</label>
+                                    <input type="text" class="form-control" name="alergia3" placeholder="Alergia">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <br>
+                                    <label for="middleName">Alergia</label>
+                                    <input type="text" class="form-control" name="alergia4" placeholder="Alergia">
+                                </div>
+                            </div>
+                           
+
+                            <div class="form-row line">
+                                <div class="form-group col-md-7">
+                                    <br>
+                                    <label for="middleName">Enfermedad</label>
+                                    <input type="text" class="form-control" name="enfermedad1" placeholder="Enfermedad">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <br>
+                                    <label for="middleName">Enfermedad</label>
+                                    <input type="text" class="form-control" name="enfermedad2" placeholder="Enfermedad">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <br>
+                                    <label for="middleName">Enfermedad</label>
+                                    <input type="text" class="form-control" name="enfermedad3" placeholder="Enfermedad">
+                                </div>
+                                <div class="form-group col-md-7">
+                                    <br>
+                                    <label for="middleName">Enfermedad</label>
+                                    <input type="text" class="form-control" name="enfermedad4" placeholder="Enfermedad">
+                                </div>
+							</div>  
+							</div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <br>
+                                    <label for="middleName">Medicina</label>
+                                    <input type="text" class="form-control" name="nombre1" placeholder="Medicina">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Cantidad</label>
+                                    <input type="text" class="form-control" name="cantidad1" placeholder="Mililitros ">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <br>
+                                    <label for="middleName">Horas</label>
+                                    <input type="numer" class="form-control" name="cada1" placeholder="cada">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Dias</label>
+                                    <input type="text" class="form-control" name="durante1" placeholder="Durante">
+                                </div>
+                            </div>
+                            <div class="form-row line">
+                                 <div class="form-group col-md-4">
+                                    <br>
+                                    <label for="middleName">Medicina</label>
+                                    <input type="text" class="form-control" name="nombre2" placeholder="Medicina">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Cantidad</label>
+                                    <input type="text" class="form-control" name="cantidad2" placeholder="Mililitros ">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <br>
+                                    <label for="middleName">Horas</label>
+                                    <input type="numer" class="form-control" name="cada2" placeholder="cada">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Dias</label>
+                                    <input type="text" class="form-control" name="durante2" placeholder="Durante">
+                                </div>
+                            <div class="form-row">
+                                 <div class="form-group col-md-4">
+                                    <br>
+                                    <label for="middleName">Medicina</label>
+                                    <input type="text" class="form-control" name="nombre3" placeholder="Medicina">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Cantidad</label>
+                                    <input type="text" class="form-control" name="cantidad3" placeholder="Mililitros ">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <br>
+                                    <label for="middleName">Horas</label>
+                                    <input type="numer" class="form-control" name="cada3" placeholder="cada">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Dias</label>
+                                    <input type="text" class="form-control" name="durante3" placeholder="Durante">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                 <div class="form-group col-md-4">
+                                    <br>
+                                    <label for="middleName">Medicina</label>
+                                    <input type="text" class="form-control" name="nombre4" placeholder="Medicina">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Cantidad</label>
+                                    <input type="text" class="form-control" name="cantidad4" placeholder="Mililitros ">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <br>
+                                    <label for="middleName">Horas</label>
+                                    <input type="numer" class="form-control" name="cada4" placeholder="cada">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Dias</label>
+                                    <input type="text" class="form-control" name="durante4" placeholder="Durante">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                 <div class="form-group col-md-4">
+                                    <br>
+                                    <label for="middleName">Medicina</label>
+                                    <input type="text" class="form-control" name="nombre5" placeholder="Medicina">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Cantidad</label>
+                                    <input type="text" class="form-control" name="cantidad5" placeholder="Mililitros ">
+                                </div>
+                                <div class="form-group col-md-1">
+                                    <br>
+                                    <label for="middleName">Horas</label>
+                                    <input type="numer" class="form-control" name="cada5" placeholder="cada">
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <br>
+                                    <label for="middleName">Dias</label>
+                                    <input type="text" class="form-control" name="durante5" placeholder="Durante">
+                                </div>
+                            </div>
+
+						</div>
+                        <br>
+                        <div class="form-group col-md-9 ">
+                            <textarea name="descripcion" rows="10" cols="110" placeholder="Escribe alguna observacion del paciente" maxlength="100"></textarea>
+                        </div> 
+						<center><button class="ghost center">Guardar</button></center>   
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+

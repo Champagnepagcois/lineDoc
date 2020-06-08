@@ -49,31 +49,27 @@ passport.use('local.signup', new LocalStrategy({
   newUser.password = await helpers.encryptPassword(password);
   // Saving in the Database
   const result = await pool.query('INSERT INTO doc SET ? ', newUser);
-  newUser.num_emp = result.insertId;
   return done(null, newUser);
 }));
+
 
 passport.serializeUser((user, done) => {
   done(null,{
 
-   _id: user.num_emp,
-   userType: user.id_type,
-   idk : user.cargo
+    num_emp: user.num_emp,
+    userType: user.id_type  
 
-  });
+   });
 });
 
-passport.deserializeUser(async (num_emp, done) => {
-
+passport.deserializeUser(async (obj, done) => {
   var user;
-
   if(obj.userType == 1){
-    user = await pool.query('SELECT * FROM doc WHERE num_emp =? ', (obj._id));
+    user = await pool.query('SELECT * FROM doc WHERE num_emp =? ', (obj.num_emp));
   }
   if(obj.userType == 2){
-    user = await pool.query('SELECT * FROM users WHERE num_emp =? ',  (obj._id));
+    user = await pool.query('SELECT * FROM users WHERE num_emp =? ', (obj.num_emp));
   }
-
   done(null, user[0]);
   
 });

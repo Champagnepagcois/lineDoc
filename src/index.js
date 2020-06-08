@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.use(session({
-  secret: 'faztmysqlnodemysql',
+  secret: 'mysqlnodemysql',
   resave: false,
   saveUninitialized: false,
   store: new MySQLStore(database)

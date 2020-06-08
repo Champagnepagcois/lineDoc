@@ -1,54 +1,156 @@
+<style>
+    body {
+        height: 100vh;
+        align-items: center;
+    }
+
+    .our-team {
+        padding: 30px 0 40px;
+        margin-bottom: 30px;
+        background-color: #f7f5ec;
+        text-align: center;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .our-team .picture {
+        display: inline-block;
+        height: 130px;
+        width: 130px;
+        margin-bottom: 30px;
+        z-index: 1;
+        position: relative;
+    }
+
+    .our-team .picture::before {
+        content: "";
+        width: 100%;
+        height: 0;
+        border-radius: 50%;
+        background-color: #1369ce;
+        position: absolute;
+        bottom: 135%;
+        right: 0;
+        left: 0;
+        opacity: 0.9;
+        transform: scale(3);
+        transition: all 0.3s linear 0s;
+    }
+
+    .our-team:hover .picture::before {
+        height: 100%;
+    }
+
+    .our-team .picture::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background-color: #1369ce;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+
+    .our-team .picture img {
+        width: 100%;
+        height: auto;
+        border-radius: 50%;
+        transform: scale(1);
+        transition: all 0.9s ease 0s;
+    }
+
+    .our-team:hover .picture img {
+        box-shadow: 0 0 0 14px #f7f5ec;
+        transform: scale(0.7);
+    }
+
+    .our-team .title {
+        display: block;
+        font-size: 15px;
+        color: #4e5052;
+        text-transform: capitalize;
+    }
+
+    .our-team .social {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: #1369ce;
+        position: absolute;
+        bottom: -100px;
+        left: 0;
+        transition: all 0.5s ease 0s;
+    }
+
+    .our-team:hover .social {
+        bottom: 0;
+    }
+
+    .our-team .social li {
+        display: inline-block;
+    }
+
+    .our-team .social li a {
+        display: block;
+        padding: 10px;
+        font-size: 17px;
+        color: white;
+        transition: all 0.3s ease 0s;
+        text-decoration: none;
+    }
+
+    .our-team .social li a:hover {
+        color: #1369ce;
+        background-color: #f7f5ec;
+    }
+</style>
+
+
 
 <div class="row">
-
     <div class="col-md-4 d-block mx-auto">
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button" id="searchproduct">Search</button>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search..." aria-label="Recipient's username"
+                aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="button" id="searchproduct">Search</button>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
-  
-    <div class="container p-4">
-        <div class="row">
-            {{#each links}}
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <a href="{{url}}" target="_blank">
-                            <h3 class="card-title text-uppercase">
-                                {{title}}
-                            </h3>
-                        </a>
-                        <p class="m-2">{{description}}</p>
-                        <p class="text-muted">
-                            {{timeago created_at}}
-                        </p><p>
-                        <a class="btn btn-danger" href="/links/delete/{{id}}">
-                            Eliminar paciente
-                        </a></p>
-                        <p>
-                        <a class="btn btn-warning" href="/links/edit/{{id}}">
-                            Editar
-                        </a></p>
-                        <p>
-                        <a class="btn btn-primary" href="/links/patient/{{id}}">
-                            Ver paciente
-                        </a></p>
+</div>
+
+<div class="container">
+    <div class="row">
+        {{#each arraydatospac}}
+        <a href="/links/patient/{{id_pac}}">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="our-team">
+                    <div class="picture">
+                        <img class="img-fluid"
+                            src="https://static01.nyt.com/images/2020/04/14/smarter-living/14virus-maskdonts1/00well-mask-too-low-mobileMasterAt3x-v2.png">
                     </div>
+                    <div class="team-content">
+                        <h3 class="name">{{namep}}</h3>
+                        <h4 class="title">{{surname_p}} {{surname_m}}</h4>
+                    </div>
+                    <ul class="social">
+                        <li><a href="/links/historial/{{id_pac}}" class="fas fa-book-medical"
+                                aria-hidden="true">Historial</a></li>
+                        <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter"
+                                aria-hidden="true"></a></li>
+                    </ul>
                 </div>
             </div>
-
-            {{else}}
-
-            <div class="col-md-4 mx-auto">
-                <div class="card card-body text-center">
-                    <p>No hay pacientes registrados todavia</p>
-                    <a href="/links/add">Agrega uno!</a>
-                </div>
+        </a>
+        {{else}}
+        <div class="col-md-4 mx-auto">
+            <div class="card card-body text-center">
+                <p>No hay pacientes registrados todavia</p>
+                <a href="/links/add">Agrega uno!</a>
             </div>
-            {{/each}}
         </div>
+        {{/each}}
     </div>
+</div>
