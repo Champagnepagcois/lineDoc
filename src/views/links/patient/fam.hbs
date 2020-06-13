@@ -146,8 +146,8 @@ form.example::after {
 
 <div class="container">
     <div class="row">
-        {{#each arraydatospac}}
-        <a href="/links/patient/{{id_pac}}">
+        {{#each arraydatosFam}}
+        
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <div class="our-team">
                     <div class="picture">
@@ -155,23 +155,22 @@ form.example::after {
                             src="https://static01.nyt.com/images/2020/04/14/smarter-living/14virus-maskdonts1/00well-mask-too-low-mobileMasterAt3x-v2.png">
                     </div>
                     <div class="team-content">
-                        <h3 class="name">{{namep}}</h3>
-                        <h4 >{{surname_p}} {{surname_m}}</h4>
+                        <h3 class="name"> Name:{{namef}}</h3>
+                        <h4 class="name">Surnmae:{{apellido_p}} {{apellido_m}}</h4>
+                        <h4class="name"> tel:{{tel}}</h4>
                     </div>
                     <ul class="social">
-                        <li><a href="/links/historial/{{id_pac}}" class="fas fa-book-medical"
-                                aria-hidden="true">Historial</a></li>
-                        <li><a href="https://codepen.io/collection/XdWJOQ/" class="fa fa-twitter"
-                                aria-hidden="true"></a></li>
+
+                        <li><a href="/links/fam/delete/{{id_fam}}" class="fas fa-book-medical"
+                                aria-hidden="true">Eliminar</a></li>
                     </ul>
                 </div>
             </div>
-        </a>
         {{else}}
         <div class="col-md-4 mx-auto">
             <div class="card card-body text-center">
-                <p>No hay pacientes registrados todavia</p>
-                <a href="/links/add">Agrega uno!</a>
+                <p>No hay familiar registrado todavia</p>
+                <a href="/links/add/fam">Agrega uno!</a>
             </div>
         </div>
         {{/each}}

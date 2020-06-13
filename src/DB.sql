@@ -8,38 +8,39 @@ CREATE TABLE sangre (
     PRIMARY KEY (id_san)
 );
 
-INSERT INTO sangre (id_san,tipo) VALUES (0,'+A');
-INSERT INTO sangre (id_san,tipo) VALUES (0,'+B');
-INSERT INTO sangre (id_san,tipo) VALUES (0,'+O ');
-INSERT INTO sangre (id_san,tipo) VALUES (0,'+AB');
-INSERT INTO sangre (id_san,tipo) VALUES (0,'-A');
-INSERT INTO sangre (id_san,tipo) VALUES (0,'-B');
-INSERT INTO sangre (id_san,tipo) VALUES (0,'-O');
-INSERT INTO sangre (id_san,tipo) VALUES (0,'-AB');
-
-
-CREATE TABLE Delegacion (
-    id_del int NOT NULL PRIMARY KEY,
-    name_del VARCHAR (20) NOT NULL
+CREATE TABLE estado (
+    id_esta int NOT NULL PRIMARY KEY,
+    name_esta VARCHAR (20)
 );
+
+
+CREATE TABLE delegacion (
+    id_del int NOT NULL PRIMARY KEY,
+    name_del VARCHAR (20)
+);
+
 CREATE TABLE colonia (
     codigo_postal int NOT NULL PRIMARY KEY,
-    name_col VARCHAR (20) NOT NULL
+    id_esta int NOT NULL,
+    id_del int NOT NULL,
+    name_col VARCHAR (20) NOT NULL,
+
+    CONSTRAINT fkestado FOREIGN KEY (id_esta)
+    REFERENCES estado (id_esta)
+    ON DELETE NO ACTION ON UPDATE CASCADE,
+
+    CONSTRAINT fkdele FOREIGN KEY (id_del)
+    REFERENCES delegacion (id_del)
+    ON DELETE NO ACTION ON UPDATE CASCADE
 );
 
 CREATE TABLE dir (
     id_dir int AUTO_INCREMENT PRIMARY KEY,
-    id_del int NOT NULL,
     codigo_postal int NOT NULL,
     calle VARCHAR (25) NOT NULL,
-    num_ext VARCHAR (10) ,
-    num_int VARCHAR (10) ,
-    manzana int,
-    lote int,
-    
-    CONSTRAINT fkdel FOREIGN KEY (id_del)
-    REFERENCES Delegacion (id_del) 
-    ON DELETE NO ACTION ON UPDATE CASCADE,
+    num_ext VARCHAR (10),
+    num_int VARCHAR (10),
+
 
     CONSTRAINT fkcol FOREIGN KEY (codigo_postal)
     REFERENCES colonia (codigo_postal)
@@ -49,8 +50,6 @@ CREATE TABLE dir (
 CREATE TABLE hospital (
     id_hos int (10) AUTO_INCREMENT PRIMARY KEY,
     nameh VARCHAR (25) NOT NULL,
-    id_dir int ,
-    id_numh int (10) 
 );
 
 CREATE TABLE estatus (
@@ -68,19 +67,19 @@ CREATE TABLE paciente (
     id_pac int AUTO_INCREMENT PRIMARY KEY,
     CURP_pa VARCHAR (18) NOT NULL UNIQUE,
     username VARCHAR (30) ,
-    password VARCHAR (50) ,
+    password VARCHAR (60) ,
     namep VARCHAR (25) NOT NULL,
     surname_p VARCHAR (15) NOT NULL,
     surname_m VARCHAR (15) NOT NULL,
     id_san int,
-    tel int (12) ,
+    tel VARCHAR (12) ,
     id_dir int,
     cumple VARCHAR (10) ,
     id_type int NOT NULL,
     id_hos int,
     id_estatus int,
 
-    CONSTRAINT fkesta FOREIGN KEY (id_estatus) 
+    CONSTRAINT fkestaaa FOREIGN KEY (id_estatus) 
     REFERENCES estatus (id_estatus)
     ON DELETE NO ACTION ON UPDATE CASCADE,
         
@@ -110,7 +109,7 @@ CREATE TABLE alergias (
 CREATE TABLE fam (
     id_fam int AUTO_INCREMENT PRIMARY KEY,
     CURP VARCHAR (18) NOT NULL UNIQUE,
-    namep VARCHAR (25) NOT NULL,
+    namef VARCHAR (25) NOT NULL,
     apellido_p VARCHAR (15) NOT NULL,
     apellido_m VARCHAR (15) NOT NULL,
     tel int (12) NOT NULL,
@@ -176,7 +175,6 @@ CREATE TABLE doc (
     REFERENCES type_usuario (id_type)
     ON DELETE NO ACTION ON UPDATE CASCADE
 );
-
 
 CREATE TABLE historial (
     id_his int AUTO_INCREMENT PRIMARY KEY,
@@ -250,7 +248,8 @@ CREATE TABLE receta (
     id_receta int AUTO_INCREMENT PRIMARY KEY, 
     id_his int NOT NULL,
     num_emp int NOT NULL,
-    id_pac int,
+    id_pac int UNIQUE,
+    created_at timestamp NOT NULL DEFAULT current_timestamp,
 
     CONSTRAINT fkrec FOREIGN KEY (id_his) 
     REFERENCES historial (id_his)
@@ -283,17 +282,30 @@ INSERT INTO type_usuario (tipo_user) VALUES ('doc');
 INSERT INTO type_usuario (tipo_user) VALUES ('pac');
 INSERT INTO type_usuario (tipo_user) VALUES ('uncheck');
 
+ INSERT INTO delegacion (id_del,name_del) VALUES (306,'Álvaro Obregón');
+ INSERT INTO delegacion (id_del,name_del) VALUES (298,'Azcapotzalco');
+ INSERT INTO delegacion (id_del,name_del) VALUES (310,'Benito Juárez');
+ INSERT INTO delegacion (id_del,name_del) VALUES (299,'Coyoacán');
+ INSERT INTO delegacion (id_del,name_del) VALUES (311,'Cuauhtémoc');
+ INSERT INTO delegacion (id_del,name_del) VALUES (301,'Gustavo A. Madero');
+ INSERT INTO delegacion (id_del,name_del) VALUES (302,'Iztacalco');
+ INSERT INTO delegacion (id_del,name_del) VALUES (303,'Iztapalapa');
+ INSERT INTO delegacion (id_del,name_del) VALUES (312,'Miguel Hidalgo');
+ INSERT INTO delegacion (id_del,name_del) VALUES (300,'Cuajimalpa');
+ INSERT INTO delegacion (id_del,name_del) VALUES (307,'Tláhuac');
+ INSERT INTO delegacion (id_del,name_del) VALUES (308,'Tlalpan');
+ INSERT INTO delegacion (id_del,name_del) VALUES (304,'Magdalena Contreras');
+ INSERT INTO delegacion (id_del,name_del) VALUES (305,'Milpa Alta');
+ INSERT INTO delegacion (id_del,name_del) VALUES (313,'Venustiano Carranza');
+ INSERT INTO delegacion (id_del,name_del) VALUES (309,'Xochimilco');
 
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+A');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+B');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+O ');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'+AB');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-A');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-B');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-O');
+INSERT INTO sangre (id_san,tipo) VALUES (0,'-AB');
 
-INSERT INTO doc (num_emp, cedula,nameD,surname_p,surname_m, cumple,cargo,phone,username, password) 
-  VALUES (1, 56, 'DR SIMI', 'LARES','reee','14-02-02','bailar',5615088526,'marlonrodriguez2b@gmail.com','123');
-
-/*delete a table with a FK
-   SET FOREIGN_KEY_CHECKS=0; DROP TABLE doc; SET FOREIGN_KEY_CHECKS=1;
-*/
-
-/*INSEET INTO */
-
-INSERT INTO doc (num_emp, cedula,nameD,surnameD, cumple,cargo,phone,username, password) 
-  VALUES (1, 56, 'DR SIMI', 'LARES','14-02-02','bailar',5615088526,'marlonrodriguez2b@gmail.com','123');
-
+INSERT INTO estado (id_esta,name_esta) VALUES (9,'CDMX');

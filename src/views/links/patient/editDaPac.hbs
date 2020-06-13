@@ -1,0 +1,208 @@
+<style>
+    * {
+        font-family: 'Raleway', sans-serif;
+    }
+
+    body {
+        background: #abaaac;
+        color: #786fa4;
+        overflow-x: hidden;
+        font-size: 14px;
+    }
+
+    .h-100vh {
+        height: 75vh !important;
+    }
+
+    .card {
+        margin: 0 auto;
+        margin-top: 0px;
+        max-width: 900px;
+        border: none;
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+            0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+            0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+
+    }
+
+    @media only screen and (max-width: 767px) {
+        body {
+            padding-top: 20px;
+        }
+
+        .card {
+            width: 100%;
+        }
+    }
+
+
+    input[type="date"] {
+        display: a;
+    }
+
+    .custom-control-input:checked~.custom-control-label::before {
+        color: #FDFFFC !important;
+        border-color: #26A598 !important;
+        background-color: #26A598 !important;
+    }
+
+    .text-center {
+        color: #FDFFFC !important;
+        background-color: #ff445c !important;
+    }
+
+    .btn-primary {
+        color: #FDFFFC;
+        background-color: #ff416c;
+        border-color: #ff416c;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff416c;
+        border-color: #ff416c;
+    }
+
+    .card-header.display-4 {
+        font-weight: bold;
+    }
+
+    button {
+        border-radius: 20px;
+        border: 1px solid #ff4b2b;
+        background: #ff445c;
+        color: #fff;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+    .line {
+        border-bottom: 5px solid rgb(5, 182, 209);
+    }
+</style>
+
+<div class="container h-100vh">
+    <div class="row row h-100 align-items-center justify-content-centerr">
+        <div class="col align-self-cente ">
+            <div class="card">
+                <div class="card-header text-center display-4">
+                    Tus datos personales
+                </div>
+                <div class="card-body">
+                    <form action="/links/EditPro" method="POST">
+                        <div class="form-row">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="firstName">Name</label>
+                                    <input type="text" class="form-control" name="namep" value="{{paciente.namep}}"
+                                    disabled>
+                                    <input type="hidden" class="form-control" name="namep" value="{{paciente.namep}} ">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="middleName">Apellido paterno</label>
+                                    <input type="text" class="form-control" name="surname_p"
+                                        value="{{paciente.surname_p}}" disabled>
+                                        <input type="hidden" class="form-control" name="surname_p"
+                                        value="{{paciente.surname_p}}" >
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="middleName">Apellido materno</label>
+                                    <input type="text" class="form-control" name="surname_m"
+                                        value="{{paciente.surname_m}}" disabled>
+                                        <input type="hidden" class="form-control" name="surname_m"
+                                        value="{{paciente.surname_m}}" >
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="CURP">CURP</label>
+                                    <input type="text" class="form-control" name="curp_pa" value="{{paciente.CURP_pa}}"
+                                        disabled>
+                                     <input type="hidden" name="curp_pa" value="{{paciente.CURP_pa}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="HOSPITAL">Hospital</label>
+                                    <input type="text" class="form-control" name="nameh" placeholder="Hospital" disabled>
+                                    <input type="hidden" class="form-control" name="nameh" placeholder="Hospital">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Tipo de sangre</label>
+                                    <input type="text" class="form-control" name="nameh" value="{{san.tipo}}" disabled>
+                                    <input type="hidden" class="form-control" name="nameh" value="{{san.tipo}}">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="firstName">Numero</label>
+                                    <input type="number" class="form-control" name="tel" placeholder="Numero"
+                                        value="{{paciente.tel}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="middleName">Cumpleaños</label>
+                                    <input type="text" class="form-control" name="cumple" value="{{paciente.cumple}}"
+                                        disabled>
+                                    <input type="hidden" class="form-control" name="cumple" value="{{paciente.cumple}}">    
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="middleName">#Codigo Postal</label>
+                                    <input type="text" class="form-control" name="codigo_postal"
+                                        placeholder="Codigo Postal" value="{{dir.codigo_postal}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="phonenumber">Estado</label>
+                                    <input type="text" class="form-control" name="id_esta" value="CDMX" disabled>
+                                    <input type="hidden" class="form-control" name="id_esta" value="CDMX" >
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="phonenumber">Delegacion</label>
+                                    <select name="id_del" class="form-control">
+                                        <option value="306">Álvaro Obregón</option>
+                                        <option value="298">Azcapotzalco</option>
+                                        <option value="310">Benito Juárez</option>
+                                        <option value="299">Coyoacán</option>
+                                        <option value="311">Cuauhtémoc</option>
+                                        <option value="301">Gustavo A. Madero</option>
+                                        <option value="302">Iztacalco</option>
+                                        <option value="303">Iztapalapa</option>
+                                        <option value="312">Miguel Hidalgo</option>
+                                        <option value="300">Cuajimalpa</option>
+                                        <option value="307">Tláhuac</option>
+                                        <option value="308">Tlalpan</option>
+                                        <option value="304">Magdalena Contreras</option>
+                                        <option value="305">Milpa Alta</option>
+                                        <option value="313">Venustiano Carranza</option>
+                                        <option value="309">Xochimilco</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Colonia</label>
+                                    <input type="text" class="form-control" name="name_col" placeholder="Colonia"
+                                        value="{{col.name_col}}">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="middleName">Calle</label>
+                                    <input type="text" class="form-control" name="calle" placeholder="Calle"
+                                        value="{{dir.calle}}" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="middleName">Numero</label>
+                                    <input type="text" class="form-control" name="num_ext" placeholder="# Ext."
+                                        value="{{dir.num_ext}}" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="middleName">Interior</label>
+                                    <input type="text" class="form-control" name="num_int" placeholder="# Int."
+                                        value="{{dir.num_int}}" required>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <center><button class="ghost center">Actualizar</button> </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

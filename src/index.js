@@ -47,7 +47,14 @@ app.use(validator());
 app.use((req, res, next) => {
   app.locals.message = req.flash('message');
   app.locals.success = req.flash('success');
-  app.locals.user = req.user;
+  
+  if(req.session.passport.user.userType ==  1){
+  app.locals.doc = req.user;
+  }else if (req.session.passport.user.userType ==2){
+  app.locals.pac = req.user;
+  }else if(req.session.passport == undefined ) {
+    app.locals.none = req.user;
+  }
   next();
 });
 

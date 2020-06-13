@@ -17,6 +17,7 @@
     .card {
         margin: 0 auto;
         margin-top: 50px;
+        margin-bottom: 75px;
         max-width: 900px;
         border: none;
         -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -60,35 +61,61 @@
         border-bottom: 5px solid rgb(5, 182, 209);
     }
 
-    
+
     .button2 {
-    border-radius: 20px;
-    border:1px solid #000000;
-    background: #FF0000;
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
+        border-radius: 20px;
+        border: 1px solid #000000;
+        background: #FF0000;
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
     }
+
     .button3 {
-    border-radius: 20px;
-    border:1px solid #000000;
-    background: rgb(207, 169, 1);
-    color: #fff;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 12px 45px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: transform 80ms ease-in;
+        border-radius: 20px;
+        border: 1px solid #000000;
+        background: rgb(207, 169, 1);
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+        padding: 12px 45px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        transition: transform 80ms ease-in;
+    }
+
+    .containerr {
+        border-color: #000000;
+        border-radius: 5%;
+        border-width: 13px;
+
+        position: absolute;
+        flex-direction: column;
+        justify-content: space-between;
+        margin: auto;
+        height: 200;
+        width: 200px;
+        margin-left: 80%;
+        margin-top: 20%;
+        background: #FDFFFC;
+    }
+
+    .formc {
+        color: #000000;
     }
 </style>
 
-
-
+<div class="containerr">
+    <div class="card-body">
+        <h3 class="formc">CODIGO QR DEL PACIENTE</h3><br>
+        <img
+            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Nombre:{{paciente.namep}} CURP:{{paciente.CURP_pa}} Familiar:{{fam.namef}} celular:{{fam.tel}}">
+    </div>
+</div>
 <div class="container h-100vh">
     <div class="row row h-100 align-items-center justify-content-centerr">
         <div class="col align-self-cente ">
@@ -185,13 +212,13 @@
     </div>
 </div>
 
-    <div class="form-group col-md-4">
-        <form action="https://google.com">
-            <center><button class="button button3">Editar receta</button></center>
-        </form>
-    </div>
-    <div class="form-group col-md-4">
-        <form action="https://google.com">
-            <center><button class="button button2">Eliminar receta</button></center>
-        </form>
-    </div>
+<div class="form-group col-md-4">
+    <form action="/links/edit/{{iden}}" method="GET">
+        <center><button class="button button3">Editar receta</button></center>
+    </form>
+</div>
+<div class="form-group col-md-4">
+    <form action="/links/delete/{{link.id_receta}}" method="GET">
+        <center><button class="button button2">Eliminar receta</button></center>
+    </form>
+</div>
