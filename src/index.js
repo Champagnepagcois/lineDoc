@@ -29,7 +29,7 @@ app.set('view engine', '.hbs');
 
 // Middlewares
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(session({
@@ -47,14 +47,20 @@ app.use(validator());
 app.use((req, res, next) => {
   app.locals.message = req.flash('message');
   app.locals.success = req.flash('success');
-  
-  if(req.session.passport.user.userType ==  1){
-  app.locals.doc = req.user;
-  }else if (req.session.passport.user.userType ==2){
-  app.locals.pac = req.user;
-  }else if(req.session.passport == undefined ) {
+
+  try {
+    if (req.session.passport.user.userType == 1) {
+      app.locals.doc = req.user;
+    }else{
+      app.locals.pac = req.user;
+    }
+  } catch (error) {
     app.locals.none = req.user;
   }
+
+  app.locals.doc = req.user;
+
+
   next();
 });
 

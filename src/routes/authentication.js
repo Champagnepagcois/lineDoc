@@ -24,7 +24,7 @@ router.get('/signup-paciente', isNotLoggedIn, (req, res) => {
 });
   
 router.post('/signup-Paciente',isNotLoggedIn, passport.authenticate('local.signup-paciente', {
-  successRedirect: '/profile',
+  successRedirect: '/myprofile',
   failureRedirect: '/signup-paciente',
   failureFlash: true
 }));
@@ -61,7 +61,7 @@ router.post('/signin-user', isNotLoggedIn, (req, res, next) => {
     res.redirect('/signin');
   };
   passport.authenticate('local.login-paciente', {
-    successRedirect: 'myprofile',
+    successRedirect: '/myprofile',
     failureRedirect: '/signin',
     failureFlash: true
   })(req, res, next);

@@ -28,7 +28,7 @@
         <a class="nav-link" href="/logout">Salir</a>
       </li>
       </li>
-      {{else if user}}
+      {{else}}
       <li class="nav-item dropdown">
       </li>
       <li class="nav-item">
@@ -37,13 +37,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/logout">Salir</a>
       </li>
-      {{else}}
-      <li class="nav-item">
-          <a class="nav-link" href="/signin">SignIn</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/signup">SignUp</a>
-        </li>
+      
 
       {{/if}}
       </ul>
