@@ -9,3 +9,5 @@
 ![](docs/pac2.JPG)
 ![](docs/ppd.JPG)
 ![](docs/register1.JPG)
+![](docs/loginapp.jpg)
+![](docs/splash(1).jpg)
