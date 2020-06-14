@@ -109,43 +109,62 @@
         color: #1369ce;
         background-color: #f7f5ec;
     }
+
     .btnse {
         width: 250px;
     }
+
     form.example input[type=text] {
-  padding: 10px;
-  font-size: 17px;
-  border: 1px solid grey;
-  float: left;
-  width: 80%;
-  background: #f1f1f1;
-}
+        padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #f1f1f1;
+    }
 
-form.example button {
-  float: left;
-  width: 20%;
-  padding: 10px;
-  background: #2196F3;
-  color: white;
-  font-size: 17px;
-  border: 1px solid grey;
-  border-left: none;
-  cursor: pointer;
-}
+    form.example button {
+        float: left;
+        width: 20%;
+        padding: 10px;
+        background: #2196F3;
+        color: white;
+        font-size: 17px;
+        border: 1px solid grey;
+        border-left: none;
+        cursor: pointer;
+    }
 
-form.example button:hover {
-  background: #0b7dda;
-}
+    form.example button:hover {
+        background: #0b7dda;
+    }
 
-form.example::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+    form.example::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
 </style>
 
 <div class="container">
     <div class="row">
+        <a href="/links/add">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="our-team">
+                    <div class="picture">
+                        <img class="img-fluid"
+                            src="https://static01.nyt.com/images/2020/04/14/smarter-living/14virus-maskdonts1/00well-mask-too-low-mobileMasterAt3x-v2.png">
+                    </div>
+                    <div class="team-content">
+                        <h3 class="name">Agrega un paciente</h3>
+                        <h4>haz Click aqui</h4>
+                    </div>
+                    <ul class="social">
+                        <li><a href="/links/add" class="fas fa-book-medical" aria-hidden="true"></a></li>
+                    </ul>
+                </div>
+            </div>
+        </a>
         {{#each arraydatospac}}
         <a href="/links/patient/{{id_pac}}">
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
@@ -156,7 +175,7 @@ form.example::after {
                     </div>
                     <div class="team-content">
                         <h3 class="name">{{namep}}</h3>
-                        <h4 >{{surname_p}} {{surname_m}}</h4>
+                        <h4>{{surname_p}} {{surname_m}}</h4>
                     </div>
                     <ul class="social">
                         <li><a href="/links/historial/{{id_pac}}" class="fas fa-book-medical"

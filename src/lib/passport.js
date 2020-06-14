@@ -14,18 +14,19 @@ passport.use('local.login-paciente', new LocalStrategy({
   console.log(req.body.username, "USERNAMELOGIN");
   
   const rows = await pool.query('SELECT * FROM paciente WHERE username = ?', [username]);
-  console.log(rows.length),"k pdo";
+  console.log(rows.length,"Rows-passport");
   if (rows.length > 0) {
-    console.log("EXISTE")
+    console.log("EXISTE");
     const user = rows[0];
-    const validPassword = await helpers.matchPassword(password, user.password)
+    const validPassword = await helpers.matchPassword(password, user.password);
+    console.log(validPassword, "PASSS");
     if (validPassword) {
       done(null, user, req.flash('success', 'Welcome ' + user.username));
     } else {
       done(null, false, req.flash('message', 'Incorrect Password'));
     }
   } else {
-    return done(null, false, req.flash('message', 'The Username does not exists.'));
+      return done(null, false, req.flash('message', 'The Username does not exists.'));
   }
 }));
 
@@ -53,13 +54,14 @@ passport.use('local.signup-paciente', new LocalStrategy({
     id_type: 2,
     id_estatus: 0,
   };
+  console.log(newPac, "**************NewPAC");
   let col = {
     codigo_postal,
     id_esta: 9,
     id_del,
     name_col,
   };
-
+  console.log(col , "*******************Col")
   let dirUser = {
     id_dir: 0,
     codigo_postal,
@@ -67,29 +69,36 @@ passport.use('local.signup-paciente', new LocalStrategy({
     num_ext,
     num_int,
   };
+  console.log(dirUser,"********************DirUser")
 
   let estatuss = {
     id_estatus:0,
     token: "null",
     username,
   };
+  console.log(estatuss, "****************ESTATUS")
+
  
   console.log(req.body,"BODY");
   newPac.password = await helpers.encryptPassword(password);
+  console.log(req.body.password,"PASS");
+  
   //Saving user in the Database
   const idES = await pool.query('INSERT INTO estatus SET ?', [estatuss]);
   newPac.id_estatus = idES.insertId;
+  console.log(newPac.id_estatus, "IDESTATUS idES")
 
   //Busca si existe su Direccion (CP,COL)
   const ifexistDir = await pool.query('SELECT codigo_postal FROM colonia WHERE codigo_postal = ?', [col.codigo_postal]);
   if (ifexistDir.length > 0) {
+    console.log("DIR 1");
     const Dir1 = await pool.query('INSERT INTO dir SET ?', [dirUser]);
     newPac.id_dir = Dir1.insertId;
   } else {
-    const Dir2 = await pool.query('INSERT INTO colonia SET ?', [col]);
-    
+    const Dir2 = await pool.query('INSERT INTO colonia SET ?', [col]);  
     const insertDir = await pool.query('INSERT INTO dir SET ?', [dirUser]);
     newPac.id_dir = insertDir.insertId;
+    console.log(newPac.id_dir, "DIR2")
   };
 
   // Busca si existe el usuario termino medio (si lo registro el doctor)
@@ -97,11 +106,11 @@ passport.use('local.signup-paciente', new LocalStrategy({
   if (ifexistPa.length > 0) {
     isInsert = await pool.query('SELECT id_pac FROM paciente where CURP_pa = ?',[newPac.CURP_pa]);
     newPac.id_pac = (Object.values(isInsert[0]));
-    console.log(newPac.id_dir, "ESTO ES EL ID DEL PACIENTE");
+    console.log(newPac.id_pac, "ESTO ES EL ID DEL PACIENTE");
     await pool.query('UPDATE paciente SET username = ?,password = ?,tel = ?,id_dir=?,cumple = ? WHERE CURP_pa = ?',
 		[username, password,tel,newPac.id_dir,cumple,CURP_pa], function (error,result,fields){
     if(error){
-      console.log(error,"El pedo es qui");
+      console.log(error,"El error qui");
       return done(null, false, req.flash('message', 'Dato incorrecto'));
     }else{
       return done(null, newPac);
@@ -110,11 +119,10 @@ passport.use('local.signup-paciente', new LocalStrategy({
 	
 	}else{
     idp = await pool.query('INSERT INTO paciente SET ?', [newPac]);
-    console.log(idp,'ESTO ES IDP');
+    console.log(idp,'ESTO ES IDP2');
 		newPac.id_pac = idp.insertId;
 		console.log("No existia");
 		return done(null, newPac);
-		console.log("XDDDDDDDDDDDD");
 	};
   
 }));
